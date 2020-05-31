@@ -1,2 +1,2 @@
 # chat
-Sistema de chat integracion Continua
+Sistema de chat multi-empresarial integracion Continua
