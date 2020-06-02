@@ -11,6 +11,6 @@ para iniciar el proyecto:
 
  1. `docker-compose up -d`
  2. ir a [http://localhost:8080](http://localhost:8080)
- 3. ![Se vera una pantalla como esta](https://imgur.com/mQzctPg)
+ 3. ![Se vera una pantalla como esta](https://i.imgur.com/mQzctPg.png)
  4. utilice como usuario: **root** 
  5. utilice como contraseña: **politecnico**
