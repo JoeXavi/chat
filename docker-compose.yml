@@ -5,14 +5,18 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: 'politecnico'
+      MYSQL_DATABASE: 'integracion_continua'      
     ports:
       - '3306:3306/tcp'
     volumes:
       - data_db:/var/lib/mysql
+      
   cliente:
     image: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: 'base_datos'
     restart: always
     ports:
-      - '8080:80/tcp'    
+      - 8080:8080
 volumes:
   data_db:                
