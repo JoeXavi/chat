@@ -9,5 +9,10 @@ services:
       - '3306:3306/tcp'
     volumes:
       - data_db:/var/lib/mysql
+  cliente:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:80/tcp'    
 volumes:
-  data_db:                   
+  data_db:                
