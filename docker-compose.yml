@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  base_datos:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 'politecnico'
+    ports:
+      - '3306:3306/tcp'
+    volumes:
+      - data_db:/var/lib/mysql
+volumes:
+  data_db:                   
