@@ -1,0 +1,14 @@
+{
+  "name": "chat_project",
+  "version": "1.0.0",
+  "description": "Chat multi-empresarial como proyecto de integracion continua",
+  "author": "Equipo 7 <equi@poli.edu.co>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies" : {
+    "express": "^4.16.4",
+    "mysql": "2.18.1"  
+  }
+}
