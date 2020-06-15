@@ -27,7 +27,7 @@ services:
   chatjs:
     build: 
       context: ./node_project
-    #command: npm start
+    command: npm start
     restart: unless-stopped
     container_name: nuestro-server
     ports: 
