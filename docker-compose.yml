@@ -21,7 +21,7 @@ services:
       ADMINER_DEFAULT_SERVER: 'base_datos'
     restart: unless-stopped
     ports:
-      - 8083:8080
+      - 8080:8080
     networks: 
       - netchat 
   chatjs:
