@@ -40,4 +40,9 @@ io.on('connection', (socket) => {
   socket.on('new_message',(data)=>{
     io.sockets.emit('new_message',{message:data.message,userna:socket.username});
   })
+
+  socket.on('typing',(data)=>{
+    console.log("typing")
+    socket.broadcast.emit('typing',{username:socket.username})
+  })
 })
