@@ -1,4 +1,4 @@
-//console.log("Hello world Nodejs Server")
+console.log("Hello world Nodejs Server")
 
 var mysql  = require('mysql');
 const connection = mysql.createConnection({
@@ -25,7 +25,7 @@ app.get('/',(req, res) => {
   // res.send("Hello world<br>"+"Conection MYSQL id:"+connection.threadId);
   res.render('index')
 })
-console.log("Hello World");
+console.log("Hello World con webhook");
 server = app.listen(3000)
 const io = require("socket.io")(server)
 io.on('connection', (socket) => {
