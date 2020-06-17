@@ -25,7 +25,7 @@ app.get('/',(req, res) => {
   // res.send("Hello world<br>"+"Conection MYSQL id:"+connection.threadId);
   res.render('index')
 })
-console.log("Hello World con webhook");
+console.log("Hello World con webhook 200");
 server = app.listen(3000)
 const io = require("socket.io")(server)
 io.on('connection', (socket) => {
