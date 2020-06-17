@@ -1,4 +1,4 @@
-console.log("Hello world Nodejs Server")
+//console.log("Hello world Nodejs Server")
 
 var mysql  = require('mysql');
 const connection = mysql.createConnection({
