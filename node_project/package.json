@@ -5,10 +5,13 @@
   "author": "Equipo 7 <equi@poli.edu.co>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
-  "dependencies" : {
-    "express": "^4.16.4",
-    "mysql": "2.18.1"  
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mysql": "2.18.1",
+    "socket.io": "^2.3.0"
   }
 }

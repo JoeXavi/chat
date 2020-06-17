@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     #command: --default-authentication-plugin=mysql_native_password
     container_name: mysql_node
-    restart: always
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: 'p0l1t3cn1c0'
       MYSQL_DATABASE: 'integracion_continua'      
@@ -19,9 +19,9 @@ services:
     image: adminer
     environment:
       ADMINER_DEFAULT_SERVER: 'base_datos'
-    restart: always
+    restart: unless-stopped
     ports:
-      - 8083:8080
+      - 8080:8080
     networks: 
       - netchat 
   chatjs:
@@ -31,12 +31,24 @@ services:
     restart: unless-stopped
     container_name: nuestro-server
     ports: 
-      - 3000:3000
+      - 80:3000
     volumes: 
       - ./node_project:/usr/src/app
       - /usr/src/app/node_modules
     networks: 
       - netchat
+  jenkins:
+      image: jenkins/jenkins:lts
+      privileged: true
+      user: root
+      ports:
+          - 8081:8080
+          - 5000:5000
+      container_name: jenkins
+      volumes:
+          - ./data:/var/jenkins_home
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /usr/bin/docker:/usr/bin/docker  
 networks: 
   netchat:
 
