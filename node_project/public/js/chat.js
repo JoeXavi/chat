@@ -29,5 +29,5 @@ $(function(){
         socket.emit('change_username',{username:username.val()})
     })
 
-
+    console.log("Integracin continua");
 })
