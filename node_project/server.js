@@ -19,7 +19,7 @@ app.use(express.static(__dirname +'/public'));
 routes(app);
 
 /////Chat
-console.log("here")
+
 server = app.listen(3000)
 const io = require("socket.io")(server)
 
