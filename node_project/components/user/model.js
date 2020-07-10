@@ -6,15 +6,20 @@ const mySchema = new Schema({
       type: String,
       required: true
     },
-    domain:{
-      type: String,
+    email: {
+        type: String,
+        required: true,
+        unique: true
     },
-    description: String,
     status: {
       type: String,
       default: 'Active'
-    }
+    },
+    enterprise:[{
+        type: Schema.Types.ObjectId,
+        ref:'enterprises'
+    }],
   })
 
-  const model = mongoose.model('enterprises',mySchema);
+  const model = mongoose.model('users',mySchema);
   module.exports = model

@@ -6,8 +6,12 @@ const mySchema = new Schema({
       type: String,
       required: true
     },
-    email: String,
-    password:String,
+    email: {
+      type: String,
+      required: true
+      unique: true
+    },
+    password: String,
     status: {
       type: String,
       default: 'Active'

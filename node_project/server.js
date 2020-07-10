@@ -1,26 +1,33 @@
-const express = require('express');
-const bodyParser = require('body-parser')
-
-const response = require ('./network/response')
-const routes = require('./network/routes')
-
-const { config } = require('./config/index')
-const db = require('./db')
-db(config.mongo)
-
+const express = require('express')
 const app = express();
+const server = require('http').Server(app)
+const cors = require('cors')
+
+const bodyParser = require('body-parser')
+const socket = require ('./socket')
+const routes = require('./network/routes')
+const { config } = require('./config/index')
+
+const db = require('./db')
+
 
 app.use(bodyParser.urlencoded({ limit: '900mb', extended: true }))
 app.use(bodyParser.json({ limit: '900mb' }))
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname +'/public'));
+app.use(cors())
 
+socket.connect(server)
+db(config.mongo)
 routes(app);
 
-/////Chat
-console.log("Test")
-server = app.listen(3000)
+server.listen(3000,()=>{
+  console.log("Server listen port 3000")
+})
+
+
+/*
 const io = require("socket.io")(server)
 
 io.on('connection', (socket) => {
@@ -38,3 +45,4 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('typing',{username:socket.username})
   })
 })
+*/
