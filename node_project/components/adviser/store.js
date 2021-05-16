@@ -29,14 +29,33 @@ async function show(id){
             if(err)
             return reject(err)
 
-            return resolve(res)
+            if(res.length>0)
+                return resolve(res[0])
+            else
+                return resolve({})
+        })
+    })
+}
+
+async function showbyEmail(email){
+    return await new Promise(function(resolve, reject){
+        Model.find({ email })
+        .populate('enterprise')
+        .exec(function(err, res){
+            if(err)
+            return reject(err)
+            
+            if(res.length>0)
+                return resolve(res[0])
+            else
+                return resolve({})
         })
     })
 }
 
 async function update(id, data){
     return new Promise(function (resolve, reject){
-        Model.findOneAndUpdate(id, data, {new: true},function(err, doc){
+        Model.findOneAndUpdate({_id:id}, data, {new: true},function(err, doc){
         if(err)
             reject(err)
         
@@ -50,6 +69,7 @@ module.exports = {
     add,
     list,
     update,
-    show
+    show,
+    showbyEmail
 }
 

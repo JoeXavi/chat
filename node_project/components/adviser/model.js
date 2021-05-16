@@ -8,7 +8,7 @@ const mySchema = new Schema({
     },
     email: {
       type: String,
-      required: true
+      required: true,
       unique: true
     },
     password: String,
@@ -16,10 +16,10 @@ const mySchema = new Schema({
       type: String,
       default: 'Active'
     },
-    enterprise:[{
+    enterprise:{
       type: Schema.Types.ObjectId,
       ref:'enterprises'
-    }],
+    },
   })
 
   const model = mongoose.model('adviser',mySchema);

@@ -1,14 +1,21 @@
 const store = require('./store')
 
-function addEnterprise(name, description = ""){
+async function addEnterprise(domain, name, description = ""){
     if(!name){
-        return Promise.reject('Invalid name')
-    }
-    const enterprise = {
-        name,
-        description
+        return Promise.resolve('Invalid name')
     }
 
+    let enterprise = await store.showByDomain(domain)
+
+    //return Object.keys(enterprise).length
+    if(Object.keys(enterprise).length !== 0)
+        return Promise.resolve('Dominio ya asociado') 
+    
+    enterprise = {
+        name,
+        description,
+        domain
+    }
     return store.add(enterprise)
 }
 
@@ -16,34 +23,22 @@ function getEnterprises(){
     return store.list()
 }
 
-function updateEnterprise(id, data){
-    if(!data.name && !data.description && !data.status){
-        return Promise.reject('Invalid data')
-    }
-    let enterprise = {
-        _id:id
-    }
-    if(data.name)
-        enterprise = {
-            ...enterprise,
-            name:data.name
-        }
-    if(data.description)
-        enterprise = {
-            ...enterprise,
-            description: data.description
-        }
-    if(data.status)
-        enterprise = {
-            ...enterprise,
-            status: data.status
-        }
+function getEnterprise(id){
+    
+    return store.showById(id)
+}  
 
+function updateEnterprise(id, data){
+    let enterprise = {
+        ...data
+    }
+    //return enterprise;
     return store.update(id, enterprise)
 }
 
 module.exports = {
     addEnterprise,
     getEnterprises,
-    updateEnterprise
+    updateEnterprise,
+    getEnterprise
 }

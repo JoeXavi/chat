@@ -1,16 +1,33 @@
 const Model = require ('./model');
+const UIDGenerator = require('uid-generator');
+const uidgen = new UIDGenerator(512, UIDGenerator.BASE62);
 
-function addEnterprise(enterprise){
-    const myEnterprise = new Model(enterprise)
+async function addEnterprise(enterprise){
+    let toSave = {
+        ...enterprise,
+        token: await uidgen.generate()
+    }
+    const myEnterprise = new Model(toSave)
     return myEnterprise.save();   
 }
 
+async function showByToken(token){
+    return Model.findOne({ token })
+}
 
 async function getEnterprises(){
     let result = await Model.find({
         status:'Active'
     });
     return result
+}
+
+async function showById(id){
+    return Model.find({ _id:id })
+}
+
+async function showByDomain(domain){
+    return Model.find({ domain })
 }
 
 async function update(id, enterprise){
@@ -28,6 +45,9 @@ async function update(id, enterprise){
 module.exports = {
     add: addEnterprise,
     list: getEnterprises,
-    update: update
+    update: update,
+    showByDomain,
+    showById,
+    showByToken
 }
 

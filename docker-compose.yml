@@ -1,4 +1,4 @@
-version: '3.3
+version: '3.3'
 
 services:
   #base_datos:
@@ -29,27 +29,35 @@ services:
       context: ./node_project
     command: npm start
     restart: unless-stopped
-    container_name: nuestro-server
+    container_name: chat-project
     ports: 
       - 80:3000
     volumes: 
       - ./node_project:/usr/src/app
       - /usr/src/app/node_modules
-    networks: 
-      - netchat
-  jenkins:
-      image: jenkins/jenkins:lts
-      privileged: true
-      user: root
-      ports:
-          - 8081:8080
-          - 5000:5000
-      container_name: jenkins
-      volumes:
-          - ./../:/var/jenkins_home/workspace
-          - /var/run/docker.sock:/var/run/docker.sock
-          - /usr/bin/docker:/usr/bin/docker  
-networks: 
-  netchat:
+  mongo:
+    image: mongo
+    container_name: chat-mongo
+    volumes:
+      - ${MONGODB_DATA_PATH}:/data/db
+    ports:
+      - ${MONGODB_PORT}:27017
+
+  #  networks: 
+  #    - netchat
+  #jenkins:
+  #    image: jenkins/jenkins:lts
+  #    privileged: true
+  #    user: root
+  #    ports:
+  #        - 8081:8080
+  #       - 5000:5000
+  #    container_name: jenkins
+  #    volumes:
+  #        - ./../:/var/jenkins_home/workspace
+  #        - /var/run/docker.sock:/var/run/docker.sock
+  #        - /usr/bin/docker:/usr/bin/docker  
+#networks: 
+#  netchat:
 
                 

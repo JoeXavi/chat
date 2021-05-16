@@ -13,5 +13,4 @@ exports.error = function (request, response, error, code, details) {
             error: error,
             body: ''          
         });
-    
   }

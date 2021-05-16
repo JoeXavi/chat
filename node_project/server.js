@@ -10,12 +10,12 @@ const { config } = require('./config/index')
 
 const db = require('./db')
 
-
 app.use(bodyParser.urlencoded({ limit: '900mb', extended: true }))
 app.use(bodyParser.json({ limit: '900mb' }))
 
-app.set('view engine', 'ejs');
-app.use(express.static(__dirname +'/public'));
+
+// app.set('view engine', 'ejs');
+// app.use(express.static(__dirname +'/public'));
 app.use(cors())
 
 socket.connect(server)

@@ -8,6 +8,15 @@ const mySchema = new Schema({
     },
     domain:{
       type: String,
+      unique:true,
+      index:true,
+      sparse:true
+    },
+    token:{
+      type: String,
+      unique:true,
+      index:true,
+      sparse:true
     },
     description: String,
     status: {

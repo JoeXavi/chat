@@ -4,7 +4,7 @@ const controller = require('./controller')
 const router = express.Router();
 
 router.post('/', function (req, res) {
-    controller.addEnterprise(req.body.name,req.body.description)
+    controller.addEnterprise(req.body.domain,req.body.name,req.body.description)
         .then(data =>{
             response.success(req, res, data, 201)
         })
@@ -15,6 +15,16 @@ router.post('/', function (req, res) {
 
 router.get('/', function(req,res){
     controller.getEnterprises()
+        .then(data=>{
+            response.success(req,res,data,200)
+        })
+        .catch(e=>{
+            response.error(req,res,'Error inesperado',500,e)
+        })
+})
+
+router.get('/:id', function(req,res){
+    controller.getEnterprise(req.params.id)
         .then(data=>{
             response.success(req,res,data,200)
         })

@@ -1,3 +1,5 @@
 data_db/
 node_project/node_modules
 jenkins/data/
+node_modules/
+mongo-data/

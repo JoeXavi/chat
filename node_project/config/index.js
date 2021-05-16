@@ -9,7 +9,9 @@ require('dotenv').config(
 )
 
 const config = {
-    mongo:process.env.MONGO_CONECTION
+    mongo:process.env.MONGO_CONECTION,
+    fileSize: process.env.FILESIZE,
+    fileUrl:process.env.FILE_URL
 }
 
 module.exports = { config }
